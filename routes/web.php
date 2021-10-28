@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('/cars', CarsController::class)->middleware(['auth'])->except(['index', 'show']);
+
+Route::get('/cars/index', [CarsController::class, 'index'])->name('cars.index');
+
+Route::get('/cars/show/{id}', [CarsController::class, 'show'])->name('cars.show');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,4 +28,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

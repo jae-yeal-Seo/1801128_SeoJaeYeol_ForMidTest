@@ -32,5 +32,15 @@
                 {{ $slot }}
             </main>
         </div>
+        <script>
+            function deleteImage(id){
+          // alert('Hi~');
+          editForm = document.getElementById('editForm');
+          editForm._method.value = 'delete'
+          editForm.action = '/cars/images/'+id
+          editForm.submit();
+          return false;
+        }
+        </script>
     </body>
 </html>

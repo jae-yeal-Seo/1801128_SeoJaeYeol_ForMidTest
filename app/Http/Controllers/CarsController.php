@@ -151,4 +151,13 @@ class CarsController extends Controller
         //게시글에 딸린 이미지가 있으면 파일시스템에서도 삭제해줘야 한다.
         return redirect()->route('cars.index');
     }
+
+    public function deleteImage($id)
+    {
+        $car = Car::find($id);
+        Storage::delete('public/images/' . $car->image);
+        $car->image = null;
+        $car->save();
+        return redirect()->route('cars.edit', ['car' => $car->id]);
+    }
 }

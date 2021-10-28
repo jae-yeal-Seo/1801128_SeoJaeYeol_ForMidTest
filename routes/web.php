@@ -20,6 +20,9 @@ Route::get('/cars/index', [CarsController::class, 'index'])->name('cars.index');
 
 Route::get('/cars/show/{id}', [CarsController::class, 'show'])->name('cars.show');
 
+Route::delete('/cars/images/{id}', [CarsController::class, 'deleteImage'])->middleware(['auth']);
+
+
 Route::get('/', function () {
     return view('welcome');
 });
